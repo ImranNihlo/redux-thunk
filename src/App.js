@@ -17,7 +17,7 @@ function App() {
         <div>
             <div className="container">
                 <div>
-                    <h1>График лицензирования организаций</h1>
+                    <h1><u>График лицензирования организаций</u></h1>
                     <div className="main-line">
                         <h3>не прошли лицензирование -</h3>
                         <div className="line-red"></div>
