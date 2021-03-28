@@ -1,0 +1,45 @@
+.container {
+    width: 1200px;
+    margin: 0 auto;
+}
+.row {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+.card {
+    width: 100px;
+    border: 1px solid black;
+    margin-bottom: 5px;
+    text-align: center;
+    padding: 5px;
+}
+.id, .title {
+    display: flex;
+    align-items: center;
+}
+.blue {
+    background-color: blue;
+}
+.red {
+    background-color: red;
+}
+.line-red {
+    width: 30px;
+    border-top: 14px solid red;
+    margin-left: 3px;
+}
+.line-blue {
+    width: 30px;
+    border-top: 14px solid blue;
+    margin-left: 3px;
+}
+.main-line {
+    display: flex;
+    align-items: center;
+}
+.load {
+    margin: 0 auto;
+    color: red;
+    font-size: 80px;
+}
