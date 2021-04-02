@@ -8,11 +8,13 @@
     flex-wrap: wrap;
 }
 .card {
-    width: 100px;
+    width: 120px;
+    height: 220px;
     border: 1px solid black;
     margin-bottom: 5px;
     text-align: center;
     padding: 5px;
+    position: relative;
 }
 .id, .title {
     display: flex;
@@ -42,4 +44,12 @@
     margin: 0 auto;
     color: red;
     font-size: 80px;
+}
+button {
+    position: absolute;
+    bottom: 5px;
+    right: 22%;
+}
+.spin {
+    margin-left: 50px;
 }

@@ -1,17 +1,30 @@
-import {useDispatch, useSelector} from "react-redux";
-import {loadTodo} from "./actions";
-import {useEffect} from "react";
 import "./style.css"
+import {useDispatch, useSelector} from "react-redux";
+import {useEffect} from "react";
+import {checkTodo, loadTodo, removeCard} from "./actions";
+import ReactLoading from 'react-loading';
+
 
 function App() {
 
-    const todos = useSelector(state => state.todos)
+    const todos = useSelector(state => state.todos);
     const loading = useSelector(state => state.loading)
+
     const dispatch = useDispatch();
 
     useEffect(() => {
         dispatch(loadTodo());
     }, []);
+
+    const handleDelete = (id) => {
+        dispatch(removeCard(id))
+    };
+
+    const handleCheck = (id, completed) => {
+        dispatch(checkTodo(id, completed))
+    }
+
+
 
     return (
         <div>
@@ -32,12 +45,29 @@ function App() {
                         todos.map(item => {
                                 return(
                                     <div className={item.completed ? "card blue" : " card red"}>
+                                        {item.checking ? (
+                                            <div className="spin">
+                                                <ReactLoading  color="black" type="spin" width={18} height={18}/>
+                                            </div>
+                                        ) : (
+                                            <input type="checkbox"
+                                                   checked={item.completed}
+                                                   onChange={() => handleCheck(item.id, item.completed)}
+
+                                            />
+                                        )}
                                         <h3>
                                             {item.id}
                                         </h3>
                                         <div className="title">
                                             {item.title}
                                         </div>
+                                        <button
+                                            onClick={() => handleDelete(item.id)}
+                                            disabled={item.deleting}
+                                        >
+                                            удалить
+                                        </button>
                                     </div>
                                 )
                             }

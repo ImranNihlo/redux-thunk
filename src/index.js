@@ -1,16 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
-import {applyMiddleware, createStore} from "redux";
 import {Provider} from "react-redux";
+import {applyMiddleware, createStore} from "redux";
 import thunk from "redux-thunk";
 
-const initialstate = {
+const initialState = {
     todos: [],
     loading: false
 };
 
-const reducer = (state = initialstate, action) => {
+const reducer = (state = initialState, action) => {
     switch (action.type) {
         case "start":
             return {
@@ -21,17 +21,65 @@ const reducer = (state = initialstate, action) => {
         case "load":
             return {
                 ...state,
-              todos: action.payload,
+                todos: action.payload,
                 loading: false
-            };
+            }
+
+        case "delete":
+            return {
+                ...state,
+                todos: state.todos.filter((todo) => todo.id !== action.payload)
+            }
+
+        case "checking":
+            return {
+                ...state,
+                todos: state.todos.map((todo) => {
+                    if (todo.id === action.payload) {
+                        return {
+                            ...todo,
+                            checking: true
+                        }
+                    }
+                    return todo;
+                })
+            }
+
+        case "check":
+            return {
+                ...state,
+                todos: state.todos.map((todo) => {
+                    if (todo.id === action.payload) {
+                        return {
+                            ...todo,
+                            completed: !todo.completed,
+                            checking: false
+                        }
+                    }
+                    return todo;
+                })
+            }
+
+        case "deleting":
+            return {
+                ...state,
+                todos: state.todos.map((todo) => {
+                    if (todo.id === action.payload) {
+                        return {
+                            ...todo,
+                            deleting: true
+                        }
+                    }
+                    return todo;
+                })
+            }
 
         default:
             return state;
     }
-};
+}
 
-const store = createStore(reducer, applyMiddleware(thunk));
-
+const store = createStore(reducer, applyMiddleware(thunk))
 
 ReactDOM.render(
   <React.StrictMode>
