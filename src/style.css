@@ -8,7 +8,7 @@
     flex-wrap: wrap;
 }
 .card {
-    width: 120px;
+    width: 140px;
     height: 220px;
     border: 1px solid black;
     margin-bottom: 5px;
@@ -51,5 +51,9 @@ button {
     right: 22%;
 }
 .spin {
-    margin-left: 50px;
+    margin-left: 60px;
+}
+.name {
+    position: absolute;
+    bottom: 30px;
 }

@@ -1,12 +1,12 @@
 export const loadTodo = () => {
     return (dispatch) => {
-        dispatch({type: "start"})
+        dispatch({type: "todos/load/start"});
 
         fetch("https://jsonplaceholder.typicode.com/todos")
             .then(response => response.json())
             .then(json => {
                 dispatch({
-                    type: "load",
+                    type: "todos/load/success",
                     payload: json
                 })
             })
@@ -15,7 +15,7 @@ export const loadTodo = () => {
 
 export const removeCard = (id) => {
     return (dispatch) => {
-        dispatch({type: "deleting", payload: id});
+        dispatch({type: "todos/remove/start", payload: id});
 
         fetch("https://jsonplaceholder.typicode.com/todos", {
             method: "DELETE"
@@ -23,7 +23,7 @@ export const removeCard = (id) => {
             .then(response => response.json())
             .then(json => {
                 dispatch({
-                    type: "delete",
+                    type: "todos/remove/success",
                     payload: id
                 })
             })
@@ -32,7 +32,7 @@ export const removeCard = (id) => {
 
 export const checkTodo = (id, completed) => {
     return (dispatch) => {
-        dispatch({type: "checking", payload: id});
+        dispatch({type: "todos/check/start", payload: id});
 
         fetch("https://jsonplaceholder.typicode.com/todos", {
             method: "PATCH",
@@ -44,8 +44,23 @@ export const checkTodo = (id, completed) => {
             .then(response => response.json())
             .then(json => {
                 dispatch({
-                    type: "check",
+                    type: "todos/check/success",
                     payload: id
+                })
+            })
+    }
+}
+
+export const loadUsers = () => {
+    return (dispatch) => {
+        dispatch({type: "users/load/start"});
+
+        fetch("https://jsonplaceholder.typicode.com/users")
+            .then((response) => response.json())
+            .then((json) => {
+                dispatch({
+                    type: "users/load/success",
+                    payload: json
                 })
             })
     }
