@@ -8,8 +8,8 @@ function App() {
 
     return (
         <div className="container">
-            <Header/>
-            <Todos/>
+           <Header />
+           <Todos />
         </div>
     );
 }

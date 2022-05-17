@@ -2,6 +2,7 @@ import React from 'react';
 import ReactLoading from "react-loading";
 import {checkTodo, removeCard} from "../redux/actions";
 import {useDispatch} from "react-redux";
+import PropTypes from "prop-types";
 
 function Todo(props) {
 
@@ -47,5 +48,17 @@ function Todo(props) {
         </div>
     );
 }
+
+Todo.propTypes = {
+    checking: PropTypes.bool,
+    completed: PropTypes.bool,
+    onChange: PropTypes.func,
+    id: PropTypes.number,
+    title: PropTypes.string,
+    name: PropTypes.string,
+    onclick: PropTypes.func,
+    disabled: PropTypes.bool
+}
+
 
 export default Todo;
